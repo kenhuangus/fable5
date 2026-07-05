@@ -8,6 +8,7 @@ Companion repo to my Substack series:
 
 - [Part 1 — Claude Fable 5: What Changed, and How to Stop Prompting It Like Opus](https://kenhuangus.substack.com/p/claude-fable-5-what-changed-and-how)
 - [Part 2 — Loop Engineering, or How I Stopped Writing Prompts](https://kenhuangus.substack.com) (paid)
+- [Part 3 — Memory Engineering](https://kenhuangus.substack.com) (paid)
 
 ## What's here
 
@@ -19,6 +20,10 @@ Companion repo to my Substack series:
   re-score it with a fresh-context verifier that sees only the artifacts,
   escalate or close, and distill lessons from verifier-confirmed verdicts only.
   Read-only by design; containment stays behind a human gate.
+- `memory/` — memory engineering: a client-side handler for the official
+  memory tool (`memory_20250818`) with traversal guards and size caps, and a
+  startup scan that quarantines lessons that command instead of describe
+  (the anti-poisoning gate).
 - `templates/` — the loop instruction blocks and the memory scaffold, as
   paste-ready markdown.
 

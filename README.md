@@ -11,6 +11,7 @@ Companion repo to my Substack series:
 - [Part 3 — Memory Engineering](https://kenhuangus.substack.com) (paid)
 - [Part 4 — Ten Weekend Security Projects, or Plan Expensive, Build Cheap](https://kenhuangus.substack.com) (paid)
 - [Part 5 — Auditing a Third-Party Fable 5 Tool, Then Building Our Own](https://kenhuangus.substack.com) (paid)
+- [Part 6 — Ten Fable 5-Native Agent Skills](https://kenhuangus.substack.com) (paid)
 
 ## What's here
 
@@ -44,6 +45,12 @@ Companion repo to my Substack series:
   Messages API response logs, no network calls). Independently designed and
   written; see Part 5 for why and how it was audited before anything from
   the third-party tool that inspired it was trusted.
+- `skills/` — ten Fable 5-native Agent Skills (`SKILL.md` files, installable
+  as a Claude Code plugin): effort routing, scope fencing, no gold-plating,
+  evidence-bound progress, act-on-sufficiency, verifier subagents, autonomy
+  contracts, lesson memory with an anti-poisoning gate, reader-first
+  summaries, and refusal-aware API calling. Independently designed after
+  auditing a third-party skills collection for Part 6.
 
   | # | Project | Fable's job |
   |---|---|---|

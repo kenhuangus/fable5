@@ -1,0 +1,13 @@
+{
+  "agents": [
+    {"name": "orchestrator", "model": "claude-fable-5", "tools": ["dispatch_subagent", "read_ticket_queue"], "mcp_servers": ["github", "slack"]},
+    {"name": "triage-worker", "model": "claude-sonnet-5", "tools": ["read_file", "run_shell", "post_slack_message"], "mcp_servers": ["slack"], "credentials": ["SLACK_BOT_TOKEN"]},
+    {"name": "deploy-worker", "model": "claude-sonnet-5", "tools": ["run_shell", "deploy_to_prod"], "mcp_servers": ["github", "aws"], "credentials": ["AWS_ROLE_ARN", "GITHUB_PAT"]}
+  ],
+  "data_flows": [
+    {"from": "public ticket intake", "to": "orchestrator", "data": "user-submitted ticket text (untrusted)"},
+    {"from": "orchestrator", "to": "triage-worker", "data": "ticket contents, unfiltered"},
+    {"from": "triage-worker", "to": "deploy-worker", "data": "triage verdict plus suggested fix"}
+  ],
+  "trust_boundaries": ["public ticket intake", "internal deploy credentials"]
+}

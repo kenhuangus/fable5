@@ -1,0 +1,8 @@
+[
+  {"name": "github", "scopes": ["repo", "workflow", "admin:org"], "auth": "oauth", "last_used_days_ago": 2},
+  {"name": "slack", "scopes": ["chat:write", "channels:read", "admin"], "auth": "oauth", "last_used_days_ago": 1},
+  {"name": "aws", "scopes": ["s3:*", "iam:*", "ec2:*"], "auth": "env_var_key", "last_used_days_ago": 45},
+  {"name": "notion", "scopes": ["read", "write"], "auth": "oauth", "last_used_days_ago": 120},
+  {"name": "stripe-sandbox", "scopes": ["read", "write"], "auth": "env_var_key", "last_used_days_ago": 200},
+  {"name": "old-jira-connector", "scopes": ["admin"], "auth": "none", "last_used_days_ago": 300}
+]

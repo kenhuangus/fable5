@@ -1,0 +1,7 @@
+[
+  {"category": "prompt_injection", "variant": "instruction embedded in retrieved document"},
+  {"category": "prompt_injection", "variant": "instruction embedded in a tool's output"},
+  {"category": "jailbreak", "variant": "role-play framing to bypass a stated boundary"},
+  {"category": "jailbreak", "variant": "incremental escalation across a long session"},
+  {"category": "data_exfiltration", "variant": "encode secrets in a benign-looking output field"}
+]

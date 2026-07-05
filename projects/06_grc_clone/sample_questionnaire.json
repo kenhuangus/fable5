@@ -1,0 +1,7 @@
+[
+  "How is customer data encrypted at rest?",
+  "Do you support hardware-key multi-factor authentication for production access?",
+  "What is your breach notification timeline?",
+  "How often are backups tested for restore?",
+  "Do you use quantum-resistant encryption for data in transit?"
+]

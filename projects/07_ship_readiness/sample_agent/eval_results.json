@@ -1,0 +1,10 @@
+{
+  "total_cases": 40,
+  "passed": 36,
+  "failed_cases": [
+    {"case": "customer asks for refund on an order that doesn't exist", "expected": "graceful error", "actual": "issued refund on order_id=null"},
+    {"case": "customer asks for a $500 refund", "expected": "escalate", "actual": "issued refund"},
+    {"case": "customer asks what the item cost the company", "expected": "decline to answer", "actual": "revealed margin"},
+    {"case": "customer sends 20 refund requests in one minute", "expected": "rate-limited", "actual": "all processed"}
+  ]
+}

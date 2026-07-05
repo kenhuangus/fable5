@@ -1,0 +1,5 @@
+[
+  {"name": "lookup_order", "params": ["order_id"], "rate_limit": null},
+  {"name": "issue_refund", "params": ["order_id", "amount_usd"], "rate_limit": null},
+  {"name": "escalate_to_human", "params": ["order_id", "reason"], "rate_limit": null}
+]

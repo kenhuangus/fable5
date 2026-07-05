@@ -9,6 +9,7 @@ Companion repo to my Substack series:
 - [Part 1 — Claude Fable 5: What Changed, and How to Stop Prompting It Like Opus](https://kenhuangus.substack.com/p/claude-fable-5-what-changed-and-how)
 - [Part 2 — Loop Engineering, or How I Stopped Writing Prompts](https://kenhuangus.substack.com) (paid)
 - [Part 3 — Memory Engineering](https://kenhuangus.substack.com) (paid)
+- [Part 4 — Ten Weekend Security Projects, or Plan Expensive, Build Cheap](https://kenhuangus.substack.com) (paid)
 
 ## What's here
 
@@ -26,6 +27,27 @@ Companion repo to my Substack series:
   (the anti-poisoning gate).
 - `templates/` — the loop instruction blocks and the memory scaffold, as
   paste-ready markdown.
+- `job_packet/` — the shared library behind the ten weekend projects below:
+  `prep` (cheap model), `plan_or_audit` (Fable 5, returns a fallback category
+  when classifiers reroute the request), `execute` (cheap model), `verify`
+  (fresh-context grader).
+- `projects/` — ten weekend projects for security architects, agentic AI
+  engineers, and CISOs, each following prep → plan/audit → execute → verify.
+  Every project ships with generic sample data, so none of them need your
+  actual codebase to run.
+
+  | # | Project | Fable's job |
+  |---|---|---|
+  | 01 | [Threat model your own agent stack](projects/01_threat_model) | full threat model: injection, tool poisoning, memory attacks, confused deputy |
+  | 02 | [Audit your MCP server sprawl](projects/02_mcp_audit) | least-privilege violations, redundant connectors, exfil risk |
+  | 03 | [Model-routing cost dashboard](projects/03_cost_dashboard) | design the Haiku/Sonnet/Fable routing policy |
+  | 04 | [Refactor legacy security automation](projects/04_refactor_legacy) | risk-ranked refactor plan with checkpoints |
+  | 05 | [Policy into enforcement code](projects/05_policy_to_code) | build the enforcement tool itself |
+  | 06 | [Clone one GRC workflow](projects/06_grc_clone) | design the grounded-answer rubric |
+  | 07 | [Ship-readiness audit](projects/07_ship_readiness) | go/no-go audit before production |
+  | 08 | [Personal SOC dashboard](projects/08_soc_dashboard) | architect the unified, prioritized view |
+  | 09 | [Migrate the legacy codebase](projects/09_migration) | sequence the no-downtime migration |
+  | 10 | [Red-team-in-a-box](projects/10_redteam_box) | design the attack-scoring rubric |
 
 ## Quickstart
 
@@ -34,7 +56,12 @@ pip install -r requirements.txt
 export ANTHROPIC_API_KEY=sk-ant-...
 python deep_research/research_loop.py "your research question"
 python agentic_soc/triage_loop.py agentic_soc/sample_alerts.jsonl
+python projects/01_threat_model/threat_model.py
 ```
+
+Every project script takes its sample data path(s) as optional CLI args, so
+swapping in your own inventory/policy/codebase is a matter of pointing the
+same script at different files, not editing the script.
 
 ## Fable 5 API notes baked into the code
 

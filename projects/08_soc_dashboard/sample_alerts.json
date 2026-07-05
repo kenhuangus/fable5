@@ -1,0 +1,5 @@
+[
+  {"id": "A-1", "rule": "impossible-travel", "severity": "high", "status": "open"},
+  {"id": "A-2", "rule": "mass-file-rename", "severity": "critical", "status": "open"},
+  {"id": "A-3", "rule": "new-admin-grant", "severity": "medium", "status": "acknowledged"}
+]

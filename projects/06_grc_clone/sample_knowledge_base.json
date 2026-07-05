@@ -1,0 +1,8 @@
+[
+  {"topic": "encryption_at_rest", "fact": "All customer data at rest is encrypted with AES-256; keys are managed by a dedicated KMS with automatic annual rotation."},
+  {"topic": "encryption_in_transit", "fact": "All external traffic uses TLS 1.2 or higher; internal service-to-service traffic uses mTLS."},
+  {"topic": "access_control", "fact": "Production access requires SSO plus hardware-key MFA; access is reviewed quarterly and revoked automatically after 90 days of inactivity."},
+  {"topic": "incident_response", "fact": "We maintain a documented incident response plan tested via tabletop exercise twice a year; customers are notified within 72 hours of a confirmed breach affecting their data."},
+  {"topic": "subprocessors", "fact": "A current subprocessor list is published and customers are notified 30 days before any new subprocessor is added."},
+  {"topic": "backups", "fact": "Backups are taken daily, encrypted, retained for 35 days, and restore is tested quarterly."}
+]

@@ -1,0 +1,5 @@
+[
+  {"id": "T-501", "title": "Investigate impossible-travel alert A-1", "priority": "P1", "age_hours": 2},
+  {"id": "T-499", "title": "Rotate leaked API key from vendor incident", "priority": "P2", "age_hours": 30},
+  {"id": "T-480", "title": "Review Q3 access review exceptions", "priority": "P3", "age_hours": 120}
+]

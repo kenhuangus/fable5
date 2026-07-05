@@ -1,0 +1,13 @@
+model,task_type,input_tokens,output_tokens,outcome_quality
+claude-fable-5,typo_fix,500,50,good
+claude-fable-5,rename_variable,300,40,good
+claude-fable-5,threat_model,12000,4000,good
+claude-fable-5,one_line_summary,200,30,good
+claude-sonnet-5,implement_diff,8000,3000,good
+claude-sonnet-5,implement_diff,9000,3200,good
+claude-haiku-4-5,rename_variable,200,30,good
+claude-haiku-4-5,log_triage,600,80,good
+claude-fable-5,migration_plan,15000,5000,good
+claude-fable-5,answer_slack_question,400,60,good
+claude-sonnet-5,mcp_audit_execute,4000,1500,good
+claude-fable-5,fix_one_test,700,150,fair

@@ -10,6 +10,7 @@ Companion repo to my Substack series:
 - [Part 2 — Loop Engineering, or How I Stopped Writing Prompts](https://kenhuangus.substack.com) (paid)
 - [Part 3 — Memory Engineering](https://kenhuangus.substack.com) (paid)
 - [Part 4 — Ten Weekend Security Projects, or Plan Expensive, Build Cheap](https://kenhuangus.substack.com) (paid)
+- [Part 5 — Auditing a Third-Party Fable 5 Tool, Then Building Our Own](https://kenhuangus.substack.com) (paid)
 
 ## What's here
 
@@ -35,6 +36,14 @@ Companion repo to my Substack series:
   engineers, and CISOs, each following prep → plan/audit → execute → verify.
   Every project ships with generic sample data, so none of them need your
   actual codebase to run.
+- `fable_scanner/` — a clean-room Fable 5 hygiene tool with three subcommands:
+  `scan` (lint CLAUDE.md/skills/agent configs for the anti-patterns in
+  Anthropic's own Fable 5 prompting guide), `canary` (regression canary —
+  a fixed prompt set run periodically, alerting on refusal-rate or latency
+  drift), and `monitor` (refusal-category and cost analytics from local
+  Messages API response logs, no network calls). Independently designed and
+  written; see Part 5 for why and how it was audited before anything from
+  the third-party tool that inspired it was trusted.
 
   | # | Project | Fable's job |
   |---|---|---|
@@ -57,6 +66,8 @@ export ANTHROPIC_API_KEY=sk-ant-...
 python deep_research/research_loop.py "your research question"
 python agentic_soc/triage_loop.py agentic_soc/sample_alerts.jsonl
 python projects/01_threat_model/threat_model.py
+python -m fable_scanner scan fable_scanner/examples
+python -m fable_scanner monitor fable_scanner/examples/refusal_log.jsonl
 ```
 
 Every project script takes its sample data path(s) as optional CLI args, so

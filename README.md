@@ -12,6 +12,10 @@ Companion repo to my Substack series:
 - [Part 4 — Ten Weekend Security Projects, or Plan Expensive, Build Cheap](https://kenhuangus.substack.com) (paid)
 - [Part 5 — Auditing a Third-Party Fable 5 Tool, Then Building Our Own](https://kenhuangus.substack.com) (paid)
 - [Part 6 — Ten Fable 5-Native Agent Skills](https://kenhuangus.substack.com) (paid)
+- [Part 7 — Moving a Production Fleet Off Opus 4.8](https://kenhuangus.substack.com) (paid)
+- [Part 8 — The Refusal Your Error Handler Can't See](https://kenhuangus.substack.com) (paid)
+- [Part 9 — Don't Pay Twice for a Fallback](https://kenhuangus.substack.com) (paid)
+- [Part 10 — The Effort Dial Is a Cost Dial](https://kenhuangus.substack.com) (paid)
 
 ## What's here
 
@@ -51,6 +55,26 @@ Companion repo to my Substack series:
   contracts, lesson memory with an anti-poisoning gate, reader-first
   summaries, and refusal-aware API calling. Independently designed after
   auditing a third-party skills collection for Part 6.
+- `migration/` — a linter that diffs an existing Opus 4.8 request body against
+  Fable 5's requirements: it flags the sampling params (`temperature`, `top_p`,
+  `top_k`) and manual thinking config that now return a 400, carried thinking
+  blocks that bill as dead input tokens after a model switch, and a missing
+  `fallbacks` parameter. Returns `(field, severity, message)` tuples so CI can
+  fail a build on any error. Part 7.
+- `refusal/` — the wire-level refusal handler: send with the server-side
+  fallback wired, then a `read` function that branches on `stop_reason` (never
+  on `content`, which is empty on a refusal) and reads `usage.iterations` to
+  report whether Fable answered directly or a fallback caught a decline. Part 8.
+- `fallback_credit/` — manual fallback-credit redemption for custom retry loops
+  that lack the SDK middleware: redeem the one-time `fallback_credit_token` on
+  an exact-body-match retry so a hand-rolled fallback isn't billed for two cache
+  writes, plus a `served_by_sticky` check that separates a sticky-routed turn
+  from a real fallback. Part 9.
+- `effort/` — a router that maps each task's kind to one of the five effort
+  levels (`low`/`medium`/`high`/`xhigh`/`max`), so routine work runs cheap and
+  only capability-sensitive tasks pay for `xhigh`. Effort shapes all output
+  tokens (prose, tool calls, and thinking), so it is the fleet's cost policy in
+  one function. Part 10.
 
   | # | Project | Fable's job |
   |---|---|---|
@@ -75,6 +99,9 @@ python agentic_soc/triage_loop.py agentic_soc/sample_alerts.jsonl
 python projects/01_threat_model/threat_model.py
 python -m fable_scanner scan fable_scanner/examples
 python -m fable_scanner monitor fable_scanner/examples/refusal_log.jsonl
+python migration/migration_linter.py migration/sample_opus_request.json
+python -m migration.test_migration_linter
+python effort/effort_router.py
 ```
 
 Every project script takes its sample data path(s) as optional CLI args, so

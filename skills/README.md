@@ -1,9 +1,9 @@
 # fable5-skills
 
-10 Agent Skills written for how Claude Fable 5 actually behaves, independently
-designed for this series after auditing (not reusing) a third-party
-collection. See Part 6 of the Substack series for the audit and the design
-notes.
+11 Agent Skills written for how Claude Fable 5 and Mythos-class deployments
+actually behave, independently designed for this series after auditing (not
+reusing) a third-party collection. See Part 6 of the Substack series for the
+audit and the design notes.
 
 | # | Skill | What it fixes |
 |---|-------|---------------|
@@ -17,6 +17,7 @@ notes.
 | 8 | [`lesson-memory`](lesson-memory/SKILL.md) | File-based cross-session memory, with the anti-poisoning gate a shared lesson file needs. |
 | 9 | [`reader-first-summary`](reader-first-summary/SKILL.md) | Final reports readable by someone who saw none of the work -- no arrow chains, no invented shorthand. |
 | 10 | [`refusal-aware-calling`](refusal-aware-calling/SKILL.md) | `claude-fable-5` calls that degrade gracefully on a classifier refusal instead of dead-ending. |
+| 11 | [`mythos-scope-gate`](mythos-scope-gate/SKILL.md) | Approved Mythos-style cyber work must carry authorization, bounded targets, private artifacts, independent validation, and a patch owner. |
 
 ## Install
 

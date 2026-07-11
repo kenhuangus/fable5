@@ -1,0 +1,34 @@
+{
+  "model": "claude-mythos-5",
+  "authorization_id": "APPROVED-DEFENSIVE-CHANGE-1234",
+  "glasswing_scope_id": "GLASSWING-SCOPE-2026-07-A",
+  "target_repositories": [
+    "internal/service-a",
+    "internal/library-b"
+  ],
+  "allowed_actions": [
+    "inspect",
+    "reproduce",
+    "patch",
+    "verify",
+    "report"
+  ],
+  "disallowed_actions": [
+    "public_poc",
+    "credential_access",
+    "external_targeting"
+  ],
+  "network_access": false,
+  "reproduction_sandbox": "isolated-container-no-egress",
+  "evidence_store": "private-vuln-artifacts",
+  "artifact_policy": {
+    "public_poc": false,
+    "private_store_required": true,
+    "retain_exploit_artifacts": false
+  },
+  "validation": {
+    "required": true,
+    "independent_validator": "security-engineering-validation"
+  },
+  "human_patch_owner": "security-engineering"
+}

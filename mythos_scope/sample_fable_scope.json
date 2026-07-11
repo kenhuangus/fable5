@@ -1,0 +1,18 @@
+{
+  "model": "claude-fable-5",
+  "target_repositories": [
+    "internal/service-a"
+  ],
+  "allowed_actions": [
+    "inspect",
+    "patch",
+    "verify",
+    "report"
+  ],
+  "refusal_logging": true,
+  "fallbacks": [
+    {
+      "model": "claude-opus-4-8"
+    }
+  ]
+}

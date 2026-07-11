@@ -1,9 +1,10 @@
-"""Part 7: diff an Opus-era request config against Fable 5's requirements.
+"""Part 7: diff an Opus/Mythos-Preview-era config against Fable 5 requirements.
 
 Point it at a JSON request body you already send to Opus 4.8 and it reports
 every change you must make before that same body is valid on claude-fable-5.
-None of these are style opinions; each one is a hard 400 or a silent
-token-cost bug on Fable 5.
+Most checks also apply to claude-mythos-5, which shares the same adaptive
+thinking and request-shape constraints. None of these are style opinions; each
+one is a hard 400 or a production migration trap.
 
     python migration/migration_linter.py migration/sample_opus_request.json
 """
@@ -42,8 +43,8 @@ def lint(req):
                     findings.append(("messages", "warn",
                                      "Assistant turn carries a thinking block. On a "
                                      "cross-model switch (incl. an Opus fallback) strip "
-                                     "thinking/redacted_thinking; ignored blocks still "
-                                     "bill as input tokens."))
+                                     "thinking/redacted_thinking unless an exact-body "
+                                     "fallback-credit redemption requires otherwise."))
                     break
 
     if req.get("model") == "claude-fable-5" and "fallbacks" not in req:

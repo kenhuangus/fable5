@@ -1,13 +1,13 @@
 {
   "name": "fable5",
-  "description": "Fable 5-native Agent Skills marketplace, companion to the Claude Fable 5 Substack series",
+  "description": "Fable 5 and Mythos-class Agent Skills marketplace, companion to the Claude Fable 5 Substack series",
   "owner": {
     "name": "kenhuangus"
   },
   "plugins": [
     {
       "name": "fable5-skills",
-      "description": "10 Fable 5-native Agent Skills: effort routing, scope fencing, no gold-plating, evidence-bound progress, act-on-sufficiency, verifier subagents, autonomy contracts, lesson memory with an anti-poisoning gate, reader-first summaries, and refusal-aware API calling.",
+      "description": "11 Fable 5 and Mythos-class Agent Skills: effort routing, scope fencing, no gold-plating, evidence-bound progress, act-on-sufficiency, verifier subagents, autonomy contracts, lesson memory with an anti-poisoning gate, reader-first summaries, refusal-aware API calling, and Mythos scope gating.",
       "version": "1.0.0",
       "author": { "name": "kenhuangus" },
       "source": "./",

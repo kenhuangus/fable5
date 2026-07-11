@@ -1,8 +1,9 @@
-# fable5 — Loop Engineering with Claude Fable 5
+# fable5 - Loop Engineering with Claude Fable 5 and Mythos 5
 
-Working examples of loop engineering with Anthropic's Claude Fable 5: a deep
-research agent and an agentic SOC triage loop, built on the loop anatomy of
-trigger, rules, executor, fresh-context verifier, memory, and stop rules.
+Working examples of loop engineering with Anthropic's Claude Fable 5 and
+Mythos 5: a deep research agent, an agentic SOC triage loop, and a Mythos scope
+gate for approved defensive security work. The shared loop anatomy is trigger,
+rules, executor, fresh-context verifier, memory, and stop rules.
 
 Companion repo to my Substack series:
 
@@ -75,6 +76,10 @@ Companion repo to my Substack series:
   only capability-sensitive tasks pay for `xhigh`. Effort shapes all output
   tokens (prose, tool calls, and thinking), so it is the fleet's cost policy in
   one function. Part 10.
+- `mythos_scope/` — a Fable/Mythos admission-control check. Fable workloads
+  should have refusal/fallback telemetry; Mythos workloads require a Glasswing
+  scope id, approved target set, private evidence store, independent
+  validation, and a patch owner before any defensive cyber run proceeds.
 
   | # | Project | Fable's job |
   |---|---|---|
@@ -102,23 +107,32 @@ python -m fable_scanner monitor fable_scanner/examples/refusal_log.jsonl
 python migration/migration_linter.py migration/sample_opus_request.json
 python -m migration.test_migration_linter
 python effort/effort_router.py
+python mythos_scope/scope_gate.py mythos_scope/sample_mythos_scope.json
+python -m mythos_scope.test_scope_gate
 ```
 
 Every project script takes its sample data path(s) as optional CLI args, so
 swapping in your own inventory/policy/codebase is a matter of pointing the
 same script at different files, not editing the script.
 
-## Fable 5 API notes baked into the code
+## Fable 5 and Mythos 5 API notes baked into the code
 
-1. Thinking is always on. The code never sends a `thinking` parameter; depth is
+1. Fable 5 and Mythos 5 share the same 1M context, 128k output ceiling,
+   always-on adaptive thinking behavior, and $10/$50 pricing. Mythos is
+   restricted to approved Project Glasswing use; Fable is the generally
+   available safeguarded deployment.
+2. Thinking is always on. The code never sends a `thinking` parameter; depth is
    controlled with `output_config.effort` (`low` for graders, `medium` for
    execution, `xhigh` for planning and synthesis).
-2. Every request opts into the server-side Opus 4.8 fallback
+3. Every Fable request opts into the server-side Opus 4.8 fallback
    (`server-side-fallback-2026-06-01`), so a safety-classifier refusal on
    benign work (common on security tooling) reroutes instead of stalling the loop.
-3. `stop_reason` is checked before content is read; `refusal` is handled as a
+4. `stop_reason` is checked before content is read; `refusal` is handled as a
    loop event, not an exception.
-4. The maker is never the grader: verifiers run in fresh context and receive
+5. Mythos runs do not use Fable's classifier/refusal signal as the safety
+   boundary. `mythos_scope/` validates authorization, target scope, artifact
+   controls, and independent validation instead.
+6. The maker is never the grader: verifiers run in fresh context and receive
    artifacts only, never the worker's narration.
 
 ## License
